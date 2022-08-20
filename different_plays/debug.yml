@@ -22,7 +22,7 @@
       debug:
         msg: "{{ var1.stdout | type_debug }}"
 
-    - name: Use of .stdout in variable ans make comma spea. string to list
+    - name: Use of .stdout in variable and make comma spea. string to list
       debug:
         msg: "{{ item }}"
       loop: "{{ var1.stdout.split(',') }}"
@@ -34,7 +34,7 @@
           - "End"
       register: var2
 
-    - name: Another what? -> Dict with
+    - name: Another what? -> Dict with Sub-List
       debug:
         msg: "{{ var2 | type_debug }}"
 
