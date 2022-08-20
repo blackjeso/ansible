@@ -1,0 +1,53 @@
+---
+- name: Things with Debug
+  hosts: localhost
+  become: true
+  tasks:
+
+    - name: Register var
+      shell: uptime
+      register: var1
+
+    - name: Output variance1
+      debug:
+        msg: "{{ var1 }}"
+      when: not var1.rc
+
+    - name: Output variance2
+      debug:
+        var: var1
+      when: var1.rc == 0
+
+    - name: Which type is variable
+      debug:
+        msg: "{{ var1.stdout | type_debug }}"
+
+    - name: Use of .stdout in variable ans make comma spea. string to list
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ var1.stdout.split(',') }}"
+
+    - name: Get specific item from list
+      debug:
+        msg:
+          - "{{ var1.stdout.split(',')[1] }}"
+          - "End"
+      register: var2
+
+    - name: Another what? -> Dict with
+      debug:
+        msg: "{{ var2 | type_debug }}"
+
+    - name: Another what2?
+      debug:
+        var: var2
+
+    - name: Itterate Dict
+      debug:
+        msg: "{{ item.key }} -- {{ item.value }}"
+      loop: "{{ var2|dict2items }}"
+
+    - name: Itterate List in Dict
+      debug:
+        msg: "{{ item }}"
+      loop: "{{ var2.msg }}"
