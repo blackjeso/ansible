@@ -82,6 +82,7 @@
       - openssh-server
       - openssh-client
       - openssl
+      - bash-completion #https://www.mediamill.de/blog/2014/03/11/aktivieren-des-bash-completion-features-auf-einem-debian-system/
 
   - name: Configure vimrc
     copy:
