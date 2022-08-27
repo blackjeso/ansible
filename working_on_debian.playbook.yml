@@ -37,8 +37,8 @@
 
   - name: Configure sudo for user
     copy:
-      src: files/sudo_ansible
-      dest: /etc/sudoers.d/sudo_ansible
+      src: files/sudo_users
+      dest: /etc/sudoers.d/sudo_users
       owner: root
       group: root
       mode: '0644'
