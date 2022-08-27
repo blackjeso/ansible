@@ -17,6 +17,7 @@
  alias cp='cp -i'
 # alias mv='mv -i'
 
+## https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/
 alias k='k3s kubectl'
 alias kgn='k get nodes'
 
