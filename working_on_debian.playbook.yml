@@ -12,7 +12,7 @@
       name: "{{ item }}"
       state: present
       shell: /bin/bash
-      password: "$6$2c3uRv3Dx2wt8nm2$sTk22Q2SBuPRE0i4wa5ZiWaNpgrozN2q.T4HA.cFHyfnCDWUAnyQFguLVA0hpFfV.yUvSNtyAB613IyQWFZFV1"
+      password: "$6$2c3uRv3Dx2wt8nm2$sTk22Q2SBuPRE0i4wa5ZiWaNpgrozN2q.T4HA.cFHyfnCDWUAnyQFguLVA0hpFfV.yUvSNtyAB613IyQWFZFV1" # openssl passwd -6 -salt ABC yourpass
     loop: "{{ osusers }}"
 
   - name: generate SSH DIR for "{{ item }}"
