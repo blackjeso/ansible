@@ -102,6 +102,24 @@
     pip:
       name: glances
 
+  - name: Check binary yq
+    stat:
+      path: /usr/bin/yq
+    register: yq_file_path
+
+  - name: Install yq
+    command:
+      cmd: wget https://github.com/mikefarah/yq/releases/download/v4.27.2/yq_linux_amd64 -O /usr/bin/yq
+    register: yq_install
+    when: not yq_file_path.stat.exists
+
+  - name: Check yq file mode
+    file:
+      path: /usr/bin/yq
+      mode: '0755'
+      state: file
+    when: yq_install
+
   handlers:
     - name: restart ssh
       service:
