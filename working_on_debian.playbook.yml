@@ -14,11 +14,11 @@
       shell: /bin/bash
       password: "$6$2c3uRv3Dx2wt8nm2$sTk22Q2SBuPRE0i4wa5ZiWaNpgrozN2q.T4HA.cFHyfnCDWUAnyQFguLVA0hpFfV.yUvSNtyAB613IyQWFZFV1" # openssl passwd -6 -salt ABC yourpass
     loop: "{{ osusers }}"
-
+    
   - name: bashrc for "{{ item }}"
     copy:
       src: files/.bashrc
-      dest: '~./.bashrc'
+      dest: "/home/{{ item }}/.bashrc"
       owner: root
       group: root
       mode: '0644'
