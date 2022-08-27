@@ -121,15 +121,11 @@
     pip:
       name: glances
 
-  - name: Check binary yq
-    stat:
-      path: /usr/bin/yq
-    register: yq_file_path
-
   - name: Install yq
     command:
       cmd: wget https://github.com/mikefarah/yq/releases/download/v4.27.2/yq_linux_amd64 -O /usr/bin/yq
     register: yq_install
+    creates: /usr/bin/yq
     when: not yq_file_path.stat.exists
 
   - name: Check yq file mode
@@ -138,6 +134,11 @@
       mode: '0755'
       state: file
     when: yq_install
+
+  - name: Autocompletion for kubectl
+    comamnd:
+      cmd: kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+    creates: /etc/bash_completion.d/kubectl
 
   handlers:
     - name: restart ssh
