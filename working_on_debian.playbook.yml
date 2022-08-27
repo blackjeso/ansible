@@ -133,11 +133,18 @@
       mode: '0755'
       state: file
     when: yq_install
+    
+  - name: Check kubectl file
+    stat:
+      path: /usr/local/bin/kubectl
+    register: kubectl_stat
 
   - name: Autocompletion for kubectl
     command:
       cmd: "kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null"
       creates: /etc/bash_completion.d/kubectl
+    when: kubectl_stat.stat.exists
+
 
   handlers:
     - name: restart ssh
