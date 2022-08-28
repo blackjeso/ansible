@@ -21,5 +21,5 @@
 ## https://github.com/ahmetb/kubectl-aliases
 alias k='k3s kubectl'
 alias kgn='k get nodes'
-
 complete -o default -F __start_kubectl k
+export Y="--dry-run=client -o yaml"
