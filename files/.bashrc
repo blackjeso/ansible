@@ -21,5 +21,14 @@
 ## https://github.com/ahmetb/kubectl-aliases
 alias k='k3s kubectl'
 alias kgn='k get nodes'
+## create/destroy from yaml faster
+alias kaf='k apply -f '
+alias kdf='k destroy -f '
 complete -o default -F __start_kubectl k
-export Y="--dry-run=client -o yaml"
+## namespaces (poor man's `kubens`)
+#export nk='-n kube-system'
+#export n='-n important-ns' # set this as needed
+## destroy things without waiting
+export now='--grace-period 0 --force'
+# Generate YAML files from commands
+export dr="--dry-run=client -o yaml"
